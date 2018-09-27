@@ -21,7 +21,7 @@ var db *mgo.Database
 
 const (
 	COLLECTION = "livingcosts"
-	hosts      = "localhost:27017"
+	hosts      = "127.0.0.1:27017"
 	database   = "livingcosts1_db"
 	username   = ""
 	password   = ""
