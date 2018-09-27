@@ -4,17 +4,18 @@ services:
   livingcost-db:
     image: 'mongo:latest'
     container_name: 'livingcost-db'
-    command: mongod --port 27017  
+    command: mongod --port 27017
     ports:
-      - '27017:27017'
+      - '270170:27017'
+    restart: always
 
   livingcost-ms:
     container_name: 'livingcost-ms'
     build: .
     ports:
       - '3000:3000'
+    environment:
+    - 'MONGO_URL=mongodb://localhost:27017'
 
-    depends_on:
-      - 'livingcost-db'
     links:
       - livingcost-db
