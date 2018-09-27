@@ -6,7 +6,7 @@ services:
     container_name: 'livingcost-db'
     command: mongod --port 27017
     ports:
-      - '270170:27017'
+      - '27017:27017'
     restart: always
 
   livingcost-ms:
@@ -15,7 +15,7 @@ services:
     ports:
       - '3000:3000'
     environment:
-    - 'MONGO_URL=mongodb://localhost:27017'
+    - 'MONGO_URL=//localhost:27017'
 
     links:
       - livingcost-db
