@@ -3,7 +3,7 @@ package dao
 import (
 	"log"
 
-	. "github.com/rafaSalgado/livingcost/models"
+	. "github.com/RafaSalgado/livingcost/models"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -34,9 +34,7 @@ func (m *LivingcostsDAO) Connect() {
 		log.Fatal(err)
 	}
 	db = session.DB(m.Database)
-	defer session.Close()
 
-	session.SetMode(mgo.Monotonic, true)
 }
 
 // Find list of livingcosts

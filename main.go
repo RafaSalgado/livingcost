@@ -5,9 +5,9 @@ import (
 	"log"
 	"net/http"
 
-	. "github.com/rafaSalgado/livingcost/config"
-	. "github.com/rafaSalgado/livingcost/dao"
-	. "github.com/rafaSalgado/livingcost/models"
+	. "github.com/RafaSalgado/livingcost/config"
+	. "github.com/RafaSalgado/livingcost/dao"
+	. "github.com/RafaSalgado/livingcost/models"
 
 	"github.com/gorilla/mux"
 	"gopkg.in/mgo.v2/bson"
