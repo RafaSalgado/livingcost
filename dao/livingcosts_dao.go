@@ -29,7 +29,14 @@ const (
 
 // Establish a connection to database
 func (m *LivingcostsDAO) Connect() {
-	session, err := mgo.Dial(m.Server)
+	info := &mgo.DialInfo{
+		Addrs:    []string{hosts},
+		Timeout:  60 * time.Second,
+		Database: database,
+		Username: username,
+		Password: password,
+	}
+	session, err := mgo.DialWithInfo(info)
 	if err != nil {
 		log.Fatal(err)
 	}

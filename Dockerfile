@@ -22,7 +22,7 @@ WORKDIR /go/src/github.com/RafaSalgado/livingcost
 
 
 # Run microservices when the container starts.
-ENTRYPOINT /go/bin/livingcost  --port 3000 --host localhost
+ENTRYPOINT /go/bin/livingcost  
 
 
 EXPOSE 3000
