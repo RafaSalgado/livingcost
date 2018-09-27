@@ -1,6 +1,5 @@
 FROM golang
 
-ENV GOBIN $GOPATH/bin
 # Install dependencies
 RUN go get gopkg.in/mgo.v2
 RUN go get gopkg.in/mgo.v2/bson
@@ -23,7 +22,7 @@ WORKDIR /go/src/github.com/RafaSalgado/livingcost
 
 
 # Run microservices when the container starts.
-ENTRYPOINT /go/bin/livingcost  --port 3000 --host 127.0.0.1
+ENTRYPOINT /go/bin/livingcost  --port 3000 --host localhost
 
 
 EXPOSE 3000
