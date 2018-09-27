@@ -1,2 +1,2 @@
-server= "localhost"
+server= "127.0.0.1"
 database="livingcosts1_db"
