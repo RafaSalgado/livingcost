@@ -15,10 +15,16 @@ type LivingcostsDAO struct {
 
 var db *mgo.Database
 
+
+
 const (
 	COLLECTION = "livingcosts"
+	hosts      = "dockercompose_mongodb_1:27017"
+	database   = "db"
+	username   = ""
+	password   = ""
+	collection = "jobs"
 )
-
 // info := &mgo.DialInfo{
 // 		Addrs:    []string{hosts},
 // 		Timeout:  60 * time.Second,
