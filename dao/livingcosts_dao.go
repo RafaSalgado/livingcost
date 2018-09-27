@@ -21,33 +21,27 @@ var db *mgo.Database
 
 const (
 	COLLECTION = "livingcosts"
-	hosts      = "127.0.0.1:27017"
+	hosts      = "localhost:27017"
 	database   = "livingcosts1_db"
 	username   = ""
 	password   = ""
 	)
-// info := &mgo.DialInfo{
-// 		Addrs:    []string{hosts},
-// 		Timeout:  60 * time.Second,
-// 		Database: database,
-// 		Username: username,
-// 		Password: password,
-// 	}
+
 
 // Establish a connection to database
 func (m *LivingcostsDAO) Connect() {
-	info := &mgo.DialInfo{
-		Addrs:    []string{hosts},
-		Timeout:  60 * time.Second,
-		Database: database,
-		Username: username,
-		Password: password,
-	}
-	session, err := mgo.DialWithInfo(info)
+	// info := &mgo.DialInfo{
+	// 	Addrs:    []string{hosts},
+	// 	Timeout:  60 * time.Second,
+	// 	Database: database,
+	// 	Username: username,
+	// 	Password: password,
+	// }
+	session, err := mgo.Dial(hosts)
 	if err != nil {
 		log.Fatal(err)
 	}
-	db = session.DB(database)
+	db = session.DB(m.Database)
 
 }
 
