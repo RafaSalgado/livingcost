@@ -21,12 +21,11 @@ var db *mgo.Database
 
 const (
 	COLLECTION = "livingcosts"
-	hosts      = "dockercompose_mongodb_1:27017"
-	database   = "db"
+	hosts      = "localhost:27017"
+	database   = "livingcosts1_db"
 	username   = ""
 	password   = ""
-	collection = "jobs"
-)
+	)
 // info := &mgo.DialInfo{
 // 		Addrs:    []string{hosts},
 // 		Timeout:  60 * time.Second,
@@ -48,7 +47,7 @@ func (m *LivingcostsDAO) Connect() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	db = session.DB(m.Database)
+	db = session.DB(database)
 
 }
 
