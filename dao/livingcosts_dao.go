@@ -82,18 +82,18 @@ func fulldata() {
 		"Barrios Unidos", "Teusaquillo", "Los Marires", "Antonio Nariño", "Sumapaz", "Ciudad Bolivar" , "Rafael Uribe Uribe", "La candelaria",
 	 	"Puente Aranda"}
 
-	zonas := [34]strin{"Venecia" , "Cedritos" , "Santa Barbara", "Lijaca", "La Macarena", "El libertador", "Carvajal", "Madelena", "Marly",
+	zonas := [34]string{"Venecia" , "Cedritos" , "Santa Barbara", "Lijaca", "La Macarena", "El libertador", "Carvajal", "Madelena", "Marly",
 											"Modelia", "La Jimenez", "Galerias","La castellana", "Polo club", "San Antonio", "Carbonel" , "Casa linda", "Meissen",
 										 	"Lucero alto", "La Belleza", "Hayuelos", "El Dorado", "Ricauete", "Santa Isabel", "Salitre", "Sierra Morena",
 											"Ciudad Bolivar", "Tunal", "Fatima", "Marsella", "Banderas", "Patio Bonito", "Aures", "Lisboa"}
 	collection := db.C(COLLECTION)
 	for j := 0; j <= 50; j++ {
 		livingcost.ID = bson.NewObjectId()
-		livingcost.zone = zonas[rand.Intn(34)]
-		livingcost.stratification = rand.Intn(7)
-		livingcost.locality = local[rand.Intn(20)]
-		livingcost.costbasketgoods = rand.Intn( 7000000)
-		livingcost.costbasketgoods = rand.Intn(400000)
+		livingcost.Zone = zonas[rand.Intn(34)]
+		livingcost.Stratification = rand.Intn(7)
+		livingcost.Locality = local[rand.Intn(20)]
+		livingcost.Costbasketgoods = rand.Intn( 7000000)
+		livingcost.Costbasketgoods = rand.Intn(400000)
 		err := collection.Insert(livingcost)
 		log.Println(j)
 		if err != nil {
