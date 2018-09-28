@@ -3,6 +3,7 @@ package dao
 import (
 	"log"
 	"time"
+	"math/rand"
 
 	. "github.com/RafaSalgado/livingcost/models"
 	mgo "gopkg.in/mgo.v2"
@@ -44,19 +45,6 @@ func (m *LivingcostsDAO) Connect() {
 
 }
 
-func fulldata() {
-	collection := db.C(COLLECTION)
-	for j := 0; j <= 50; j++ {
-		livingcost.ID = bson.NewObjectId()
-		err := collection.Insert(livingcost)
-		log.Println(j)
-		if err != nil {
-			log.Fatal(err)
-		}
-	}
-
-}
-
 // Find list of livingcosts
 func (m *LivingcostsDAO) FindAll() ([]Livingcost, error) {
 	var livingcosts []Livingcost
@@ -87,4 +75,29 @@ func (m *LivingcostsDAO) Delete(Livingcost Livingcost) error {
 func (m *LivingcostsDAO) Update(Livingcost Livingcost) error {
 	err := db.C(COLLECTION).UpdateId(Livingcost.ID, &Livingcost)
 	return err
+}
+
+func fulldata() {
+	local := [20]string{"Bosa", "Kennedy", "Usaquen", "Chapinero", "Santa Fe", "San Cristobal", "Usme" ,"Tunjuelito", "Fontibon", "Engativa", "Suba",
+		"Barrios Unidos", "Teusaquillo", "Los Marires", "Antonio Nariño", "Sumapaz", "Ciudad Bolivar" , "Rafael Uribe Uribe", "La candelaria",
+	 	"Puente Aranda"}
+
+	zonas := [34]strin{"Venecia" , "Cedritos" , "Santa Barbara", "Lijaca", "La Macarena", "El libertador", "Carvajal", "Madelena", "Marly",
+											"Modelia", "La Jimenez", "Galerias","La castellana", "Polo club", "San Antonio", "Carbonel" , "Casa linda", "Meissen",
+										 	"Lucero alto", "La Belleza", "Hayuelos", "El Dorado", "Ricauete", "Santa Isabel", "Salitre", "Sierra Morena",
+											"Ciudad Bolivar", "Tunal", "Fatima", "Marsella", "Banderas", "Patio Bonito", "Aures", "Lisboa"}
+	collection := db.C(COLLECTION)
+	for j := 0; j <= 50; j++ {
+		livingcost.ID = bson.NewObjectId()
+		livingcost.zone = zonas[rand.Intn(34)]
+		livingcost.stratification = rand.Intn(7)
+		livingcost.locality = local[rand.Intn(20)]
+		livingcost.costbasketgoods = rand.Intn(1000000	, 7000000)
+		livingcost.costbasketgoods = rand.Intn(100000, 400000)
+		err := collection.Insert(livingcost)
+		log.Println(j)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
 }
