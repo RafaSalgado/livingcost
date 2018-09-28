@@ -92,8 +92,8 @@ func fulldata() {
 		livingcost.zone = zonas[rand.Intn(34)]
 		livingcost.stratification = rand.Intn(7)
 		livingcost.locality = local[rand.Intn(20)]
-		livingcost.costbasketgoods = rand.Intn(1000000	, 7000000)
-		livingcost.costbasketgoods = rand.Intn(100000, 400000)
+		livingcost.costbasketgoods = rand.Intn( 7000000)
+		livingcost.costbasketgoods = rand.Intn(400000)
 		err := collection.Insert(livingcost)
 		log.Println(j)
 		if err != nil {
