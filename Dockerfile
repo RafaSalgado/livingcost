@@ -5,9 +5,7 @@ RUN go get gopkg.in/mgo.v2
 RUN go get gopkg.in/mgo.v2/bson
 RUN go get github.com/gorilla/mux
 RUN go get github.com/RafaSalgado/livingcost/config
-RUN go get github.com/RafaSalgado/livingcost/dao
 RUN go get github.com/RafaSalgado/livingcost/models
-
 
 
 # copy the local package files to the container workspace
@@ -22,7 +20,7 @@ WORKDIR /go/src/github.com/RafaSalgado/livingcost
 
 
 # Run microservices when the container starts.
-ENTRYPOINT /go/bin/livingcost  
+ENTRYPOINT /go/bin/livingcost
 
 
 EXPOSE 3000

@@ -2,7 +2,7 @@ package dao
 
 import (
 	"log"
-	
+	"time"
 	. "github.com/RafaSalgado/livingcost/models"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
@@ -29,14 +29,14 @@ const (
 
 // Establish a connection to database
 func (m *LivingcostsDAO) Connect() {
-	// info := &mgo.DialInfo{
-	// 	Addrs:    []string{hosts},
-	// 	Timeout:  60 * time.Second,
-	// 	Database: database,
-	// 	Username: username,
-	// 	Password: password,
-	// }
-	session, err := mgo.Dial(hosts)
+	info := &mgo.DialInfo{
+		Addrs:    []string{hosts},
+		Timeout:  60 * time.Second,
+		Database: database,
+		Username: username,
+		Password: password,
+	}
+	session, err := mgo.DialWithInfo(info)
 	if err != nil {
 		log.Fatal(err)
 	}

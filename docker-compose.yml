@@ -8,6 +8,7 @@ services:
       - '27100:27017'
     environment:
       - MONGO_URI=127.0.0.1:27017
+    network_mode: "host"
 
 
   livingcost-ms:
@@ -18,5 +19,4 @@ services:
 
     depends_on:
     - 'livingcost-db'
-    environment:
-      VIRTUAL_HOST: livingcosts.local
+    network_mode: "host"
