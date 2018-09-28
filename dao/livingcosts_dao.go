@@ -3,10 +3,10 @@ package dao
 import (
 	"log"
 	"time"
+
 	. "github.com/RafaSalgado/livingcost/models"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-
 )
 
 type LivingcostsDAO struct {
@@ -16,16 +16,13 @@ type LivingcostsDAO struct {
 
 var db *mgo.Database
 
-
-
 const (
 	COLLECTION = "livingcosts"
 	hosts      = "localhost:27017"
 	database   = "livingcosts1_db"
 	username   = ""
 	password   = ""
-	)
-
+)
 
 // Establish a connection to database
 func (m *LivingcostsDAO) Connect() {
@@ -41,7 +38,6 @@ func (m *LivingcostsDAO) Connect() {
 		log.Fatal(err)
 	}
 	db = session.DB(m.Database)
-
 }
 
 // Find list of livingcosts
