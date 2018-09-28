@@ -16,6 +16,8 @@ type LivingcostsDAO struct {
 
 var db *mgo.Database
 
+var livingcost Livingcost
+
 const (
 	COLLECTION = "livingcosts"
 	hosts      = "localhost:27017"
@@ -38,6 +40,21 @@ func (m *LivingcostsDAO) Connect() {
 		log.Fatal(err)
 	}
 	db = session.DB(m.Database)
+	fulldata()
+
+}
+
+func fulldata() {
+	collection := db.C(COLLECTION)
+	for j := 0; j <= 50; j++ {
+		livingcost.ID = bson.NewObjectId()
+		err := collection.Insert(livingcost)
+		log.Println(j)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
 }
 
 // Find list of livingcosts
