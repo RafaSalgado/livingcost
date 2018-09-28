@@ -122,8 +122,8 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/livingcosts", AllLivingcostsEndPoint).Methods("GET")
 	r.HandleFunc("/livingcosts", CreateLivingcostEndPoint).Methods("POST")
-	r.HandleFunc("/livingcost/{id}", UpdateLivingcostEndPoint).Methods("PUT")
-	r.HandleFunc("/livingcost/{id}", DeleteLivingcostEndPoint).Methods("DELETE")
+	r.HandleFunc("/livingcosts/{id}", UpdateLivingcostEndPoint).Methods("PUT")
+	r.HandleFunc("/livingcosts/{id}", DeleteLivingcostEndPoint).Methods("DELETE")
 	r.HandleFunc("/livingcosts/{id}", FindLivingcostEndpoint).Methods("GET")
 	if err := http.ListenAndServe(":3000", r); err != nil {
 		log.Fatal(err)
