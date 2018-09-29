@@ -56,25 +56,19 @@ func CreateLivingcostEndPoint(w http.ResponseWriter, r *http.Request) {
 // PUT update an existing livingcost
 func UpdateLivingcostEndPoint(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
-	_, err := dao.FindById(params["id"])
+	livingcost, err := dao.FindById(params["id"])
 	if err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid Livingcost ID")
 		return
 	}
-
-	// barrio := params["barrio"]
-	// localidad := params["localidad"]
-	// sectorCatastral := params["sectorCatastral"]
-	// valorm2 := params["valorm2"]
+	
 	defer r.Body.Close()
-	var livingcost2 Livingcost
-	livingcost2.ID = bson.ObjectIdHex(params["id"])
 
-	if err := json.NewDecoder(r.Body).Decode(&livingcost2); err != nil {
+	if err := json.NewDecoder(r.Body).Decode(&livingcost); err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid request payload")
 		return
 	}
-	if err := dao.Update(livingcost2); err != nil {
+	if err := dao.Update(livingcost); err != nil {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
