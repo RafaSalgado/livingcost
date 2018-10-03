@@ -1,0 +1,176 @@
+  swagger: '2.0'
+  info:
+    version: 1.0.0
+    title: Microservice for Livingcost
+    description: Go + Mongodb
+    license:
+      name: Software Architecture 2018-II
+  host: 192.168.99.101:3000
+
+  schemes:
+    - http
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  paths:
+    /livingcosts:
+        get:
+        summary: Returns all livingcost
+        operationId: AllLivingcostsEndPoint
+        responses:
+          '200':
+            description: Ok
+            schema:
+              $ref: '#/definitions/LivingcostsList'
+          '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+          '500':
+            description: Internal Server Error
+            schema:
+              $ref: '#/definitions/ErrorModel'
+
+
+
+
+    /livingcosts/zone/{zone}:
+      get:
+        summary: Returns a livingcost with the given zone
+        operationId: FindLivingcostByZoneEndpoint
+        parameters:
+          - name: zone
+            in: path
+            description: The zone of the livingcost to be returned
+            required: true
+            type: string
+        responses:
+          '200':
+            description: Ok
+            schema:
+              $ref: '#/definitions/Livingcost'
+          '400':
+            description: bad request
+            schema:
+              $ref: '#/definitions/ErrorModel'
+          '404':
+            description: Page Not Found
+            schema:
+              $ref: '#/definitions/ErrorModel'
+          '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+          '500':
+            description: unexpected error
+            schema:
+              $ref: '#/definitions/ErrorModel'
+
+    /livingcosts/locality/{locality}:
+      get:
+        summary: Returns all livingcost with the given locality
+        operationId: FindLivingcostByLocalityEndpoint
+        parameters:
+          - name: locality
+            in: path
+            description: The locality of the livingcost to be returned
+            required: true
+            type: string
+        responses:
+          '200':
+            description: Ok
+            schema:
+              $ref: '#/definitions/Livingcost'
+          '400':
+            description: bad request
+            schema:
+              $ref: '#/definitions/ErrorModel'
+          '404':
+            description: Page Not Found
+            schema:
+              $ref: '#/definitions/ErrorModel'
+          '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+          '500':
+            description: unexpected error
+            schema:
+              $ref: '#/definitions/ErrorModel'
+
+    /livingcosts/{id}:
+      get:
+        summary: Returns a livingcost with the given code
+        operationId: FindLivingcostEndpoint
+        parameters:
+          - name: id
+            in: path
+            description: The id of the livingcost to be returned
+            required: true
+            type: integer
+        responses:
+          '200':
+            description: Ok
+            schema:
+              $ref: '#/definitions/Livingcost'
+          '404':
+            description: Page Not Found
+            schema:
+              $ref: '#/definitions/ErrorModel'
+          '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+          '500':
+            description: unexpected error
+            schema:
+              $ref: '#/definitions/ErrorModel'
+
+
+
+  definitions:
+
+    # Livingcosts
+    Livingcost:
+      type: object
+      properties:
+        id:
+          type: integer
+        zone:
+          type: string
+        stratification:
+          type: integer
+        locality:
+          type: string
+        costm2:
+          type: integer
+        costbasketgoods:
+          type: integer
+
+
+    LivingcostsList:
+      type: object
+      required:
+        - total
+        - list
+      properties:
+
+        total:
+          type: number
+        list:
+          type: array
+          items:
+            $ref: '#/definitions/Livingcost'
+
+  # Errors
+    ErrorModel:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+
+        description:
+          type: object

@@ -59,6 +59,23 @@ func (m *LivingcostsDAO) FindById(id string) (Livingcost, error) {
 	return Livingcost, err
 }
 
+// Find a livingcost by its zone
+func (m *LivingcostsDAO) FindByZone(zone string) (Livingcost, error) {
+	var Livingcost Livingcost
+	err := db.C(COLLECTION).Find(bson.M{"zone": zone}).One(&Livingcost)
+	return Livingcost, err
+}
+
+// Find a livingcost by its locality
+func (m *LivingcostsDAO) FindByLocality(locality string) ([]Livingcost, error) {
+	var livingcosts []Livingcost
+	err := db.C(COLLECTION).Find(bson.M{"locality": locality}).All(&livingcosts)
+	return livingcosts, err
+}
+
+
+
+
 // Insert a Livingcost into database
 func (m *LivingcostsDAO) Insert(Livingcost Livingcost) error {
 	err := db.C(COLLECTION).Insert(&Livingcost)

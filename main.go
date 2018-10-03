@@ -36,6 +36,28 @@ func FindLivingcostEndpoint(w http.ResponseWriter, r *http.Request) {
 	}
 	respondWithJson(w, http.StatusOK, livingcost)
 }
+func FindLivingcostByZoneEndpoint(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	livingcost, err := dao.FindByZone(params["zone"])
+	if err != nil {
+		respondWithError(w, http.StatusBadRequest, "400 Invalid Livingcost zone")
+		return
+	}
+	respondWithJson(w, http.StatusOK, livingcost)
+}
+
+
+func FindLivingcostByLocalityEndpoint(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	livingcost, err := dao.FindByLocality(params["locality"])
+	if err != nil {
+		respondWithError(w, http.StatusBadRequest, "Invalid Livingcost Locality")
+		return
+	}
+	respondWithJson(w, http.StatusOK, livingcost)
+}
+
+
 
 // POST a new livingcost
 func CreateLivingcostEndPoint(w http.ResponseWriter, r *http.Request) {
@@ -61,7 +83,7 @@ func UpdateLivingcostEndPoint(w http.ResponseWriter, r *http.Request) {
 		respondWithError(w, http.StatusBadRequest, "Invalid Livingcost ID")
 		return
 	}
-	
+
 	defer r.Body.Close()
 
 	if err := json.NewDecoder(r.Body).Decode(&livingcost); err != nil {
@@ -119,6 +141,8 @@ func main() {
 	r.HandleFunc("/livingcosts/{id}", UpdateLivingcostEndPoint).Methods("PUT")
 	r.HandleFunc("/livingcosts/{id}", DeleteLivingcostEndPoint).Methods("DELETE")
 	r.HandleFunc("/livingcosts/{id}", FindLivingcostEndpoint).Methods("GET")
+	r.HandleFunc("/livingcosts/zone/{zone}", FindLivingcostByZoneEndpoint).Methods("GET")
+	r.HandleFunc("/livingcosts/locality/{locality}", FindLivingcostByLocalityEndpoint).Methods("GET")
 	if err := http.ListenAndServe(":3000", r); err != nil {
 		log.Fatal(err)
 	}
