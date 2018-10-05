@@ -5,9 +5,9 @@ services:
     image: 'mongo:latest'
     container_name: 'livingcost-db'
     ports:
-      - '27100:27017'
+      - '27100:27027'
     environment:
-      - MONGO_URI=127.0.0.1:27017
+      - MONGO_URI=127.0.0.1:27027
     network_mode: "host"
 
 
@@ -15,7 +15,7 @@ services:
     container_name: 'livingcost-ms'
     build: .
     ports:
-      - '3000:3000'
+      - '4001:4001'
 
     depends_on:
     - 'livingcost-db'

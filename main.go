@@ -143,7 +143,7 @@ func main() {
 	r.HandleFunc("/livingcosts/{id}", FindLivingcostEndpoint).Methods("GET")
 	r.HandleFunc("/livingcosts/zone/{zone}", FindLivingcostByZoneEndpoint).Methods("GET")
 	r.HandleFunc("/livingcosts/locality/{locality}", FindLivingcostByLocalityEndpoint).Methods("GET")
-	if err := http.ListenAndServe(":3000", r); err != nil {
+	if err := http.ListenAndServe(":4001", r); err != nil {
 		log.Fatal(err)
 	}
 }

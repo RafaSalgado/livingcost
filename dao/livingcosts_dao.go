@@ -2,8 +2,8 @@ package dao
 
 import (
 	"log"
-	"time"
 	"math/rand"
+	"time"
 
 	. "github.com/RafaSalgado/livingcost/models"
 	mgo "gopkg.in/mgo.v2"
@@ -21,7 +21,7 @@ var livingcost Livingcost
 
 const (
 	COLLECTION = "livingcosts"
-	hosts      = "localhost:27017"
+	hosts      = "localhost:27027"
 	database   = "livingcosts1_db"
 	username   = ""
 	password   = ""
@@ -73,9 +73,6 @@ func (m *LivingcostsDAO) FindByLocality(locality string) ([]Livingcost, error) {
 	return livingcosts, err
 }
 
-
-
-
 // Insert a Livingcost into database
 func (m *LivingcostsDAO) Insert(Livingcost Livingcost) error {
 	err := db.C(COLLECTION).Insert(&Livingcost)
@@ -95,21 +92,21 @@ func (m *LivingcostsDAO) Update(Livingcost Livingcost) error {
 }
 
 func fulldata() {
-	local := [20]string{"Bosa", "Kennedy", "Usaquen", "Chapinero", "Santa Fe", "San Cristobal", "Usme" ,"Tunjuelito", "Fontibon", "Engativa", "Suba",
-		"Barrios Unidos", "Teusaquillo", "Los Marires", "Antonio Nariño", "Sumapaz", "Ciudad Bolivar" , "Rafael Uribe Uribe", "La candelaria",
-	 	"Puente Aranda"}
+	local := [20]string{"Bosa", "Kennedy", "Usaquen", "Chapinero", "Santa Fe", "San Cristobal", "Usme", "Tunjuelito", "Fontibon", "Engativa", "Suba",
+		"Barrios Unidos", "Teusaquillo", "Los Marires", "Antonio Nariño", "Sumapaz", "Ciudad Bolivar", "Rafael Uribe Uribe", "La candelaria",
+		"Puente Aranda"}
 
-	zonas := [34]string{"Venecia" , "Cedritos" , "Santa Barbara", "Lijaca", "La Macarena", "El libertador", "Carvajal", "Madelena", "Marly",
-											"Modelia", "La Jimenez", "Galerias","La castellana", "Polo club", "San Antonio", "Carbonel" , "Casa linda", "Meissen",
-										 	"Lucero alto", "La Belleza", "Hayuelos", "El Dorado", "Ricauete", "Santa Isabel", "Salitre", "Sierra Morena",
-											"Ciudad Bolivar", "Tunal", "Fatima", "Marsella", "Banderas", "Patio Bonito", "Aures", "Lisboa"}
+	zonas := [34]string{"Venecia", "Cedritos", "Santa Barbara", "Lijaca", "La Macarena", "El libertador", "Carvajal", "Madelena", "Marly",
+		"Modelia", "La Jimenez", "Galerias", "La castellana", "Polo club", "San Antonio", "Carbonel", "Casa linda", "Meissen",
+		"Lucero alto", "La Belleza", "Hayuelos", "El Dorado", "Ricauete", "Santa Isabel", "Salitre", "Sierra Morena",
+		"Ciudad Bolivar", "Tunal", "Fatima", "Marsella", "Banderas", "Patio Bonito", "Aures", "Lisboa"}
 	collection := db.C(COLLECTION)
 	for j := 0; j <= 15; j++ {
 		livingcost.ID = bson.NewObjectId()
 		livingcost.Zone = zonas[rand.Intn(34)]
 		livingcost.Stratification = rand.Intn(7)
 		livingcost.Locality = local[rand.Intn(20)]
-		livingcost.Costm2 = rand.Intn( 7000000)
+		livingcost.Costm2 = rand.Intn(7000000)
 		livingcost.Costbasketgoods = rand.Intn(400000)
 		err := collection.Insert(livingcost)
 		log.Println(j)
