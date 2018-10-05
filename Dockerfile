@@ -23,4 +23,4 @@ WORKDIR /go/src/github.com/RafaSalgado/livingcost
 ENTRYPOINT /go/bin/livingcost
 
 
-EXPOSE 3000
+EXPOSE 4001
