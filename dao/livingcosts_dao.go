@@ -21,7 +21,7 @@ var livingcost Livingcost
 
 const (
 	COLLECTION = "livingcosts"
-	hosts      = "localhost:27027"
+	hosts      = "localhost:27018"
 	database   = "livingcosts1_db"
 	username   = ""
 	password   = ""
