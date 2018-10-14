@@ -94,7 +94,7 @@ func UpdateLivingcostEndPoint(w http.ResponseWriter, r *http.Request) {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
-	respondWithJson(w, http.StatusOK, map[string]string{"result": "success"})
+	respondWithJson(w, http.StatusOK, livingcost)x|
 }
 
 // DELETE an existing livingcost
